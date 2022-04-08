@@ -1,0 +1,44 @@
+<!-- <p>navleft works!</p> -->
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <div class="logo-element">
+            RC
+        </div>
+
+        <ul class="nav metismenu" id="side-menu" >            
+                <li class="nav-header" *ngIf="auth.user$ | async as user">                    
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle"  src="../../../assets/img/profile_small.jpg">
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ user.nickname }}</strong>
+                                </span> 
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>  -->
+                            </span> </a>                           
+                        </div>      
+                </li>
+               
+                <li><a [routerLink]="['\home']"><i class="fa fa-home"></i> <span class="nav-label">Home</span>  </a></li>
+                    
+                
+            <ng-container *ngIf="auth.user$ | async as user">    
+                <ng-container *ngIf="user.nickname!='admin';" >
+                    <li><a [routerLink]="['\agendar']"><i class="fa fa-calendar"></i> <span class="nav-label">Reservar</span>  </a></li>  
+                    <li><a [routerLink]="['\agendadas']"><i class="fa fa-check"></i> <span class="nav-label">Mis Reservas</span>  </a></li>  
+                </ng-container>
+                            
+                <ng-container *ngIf="user.nickname=='admin';">                    
+                    <li><a [routerLink]="['\agendadas']"><i class="fa fa-calendar"></i> <span class="nav-label">Reservas</span>  </a></li>  
+                    <li><a [routerLink]="['\canchas']"><i class="fa fa-futbol-o"></i> <span class="nav-label">Canchas</span>  </a></li> 
+                    <li><a [routerLink]="['\estados']"><i class="fa fa-check"></i> <span class="nav-label">Estados</span>  </a></li>                                          
+                </ng-container>
+
+               
+            </ng-container>
+           
+         
+
+        </ul>              
+    </div>
+</nav>

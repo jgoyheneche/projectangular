@@ -1,0 +1,91 @@
+<!-- <p>reservar works!</p> -->
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Reservar Cancha</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a [routerLink]="['\home']">Home</a>
+            </li>           
+            <li class="active">
+                <strong>Reservar</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+  
+    </div>
+  </div>
+  
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info">                
+                Al realizar su reserva, debe hacer la transferencia a la siguiente cuenta: <br/>
+                <li type="disc"> Nombre <span class="alert-link">RESERVA CANCHAS SPA.</span> </li>
+                <li type="disc"> Rut <span class="alert-link">77.777.777-7 </span> </li>
+                <li type="disc"> Banco <span class="alert-link">BCI </span> </li>
+                <li type="disc"> <span class="alert-link">Cuenta Corriente 12345678 </span> </li>
+                <li type="disc"> Email <span class="alert-link">contacto@reservacancha.cl </span> </li>
+                Una vez recibida la transferencia se confirmará (quedando en estado Confirmada).
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>¿Para cuando quieres reservar y que cancha?</h5>              
+            </div>
+            <div class="ibox-content">
+  
+                <div class="row">
+                    <div role="form">
+                        <div class="col-md-3">
+                            <input class="form-control" type="date" [min]="mindate" placeholder="Fecha" required [(ngModel)]="fecha"  /> 
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control form-select" required [(ngModel)]="cancha">                                
+                                <option *ngFor="let ic of canchas" value="{{ic.Id}}">{{ic.Cancha}}  -  (${{ic.Precio}})</option>                                  
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3">  
+                            <button (click)="getHorarios(fecha,cancha)" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                </div>  
+
+            </div>
+        </div>
+    </div>  
+    </div> 
+
+    <div class="row" >
+        <div class="col-md-2" *ngFor="let item of data">                 
+                    <div class="ibox-content product-box" >
+                        <div class="product-desc">                                        
+                            <div class="h7 text-center">
+                                {{item.Hora}}
+                            </div>
+                            <!-- NO DISPONIBLE -->
+                            <ng-template [ngIf]="item.EstadoId" [ngIfElse]="disponible">
+                                <div class="m-t text-center">                            
+                                    <span title="Reservar" class="text-warning" ><i class="fa fa-calendar"></i> {{item.Estado}} </span>                               
+                                </div>
+                            </ng-template>
+                            <!-- DISPONIBLE -->
+                            <ng-template #disponible>                                
+                                <div class="m-t text-center">                            
+                                    <button title="Reservar" class="btn btn-xs btn-outline btn-primary" (click)="reservar(item.Id,fecha,cancha)"><i class="fa fa-calendar"></i> {{item.Estado}} </button>                                                             
+                                </div>
+                            </ng-template>                            
+                        </div>
+                    </div>                
+        </div>
+    </div>
+  </div>
+
+
+

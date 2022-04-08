@@ -1,0 +1,63 @@
+<!-- <p>lista works!</p> -->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Canchas</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a [routerLink]="['\home']">Home</a>
+            </li>
+            <li>
+                <a>Mantenedores</a>
+            </li>
+            <li class="active">
+                <strong>Cancha</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+  
+    </div>
+  </div>
+  
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Listado</h5>              
+            </div>
+            <div class="ibox-content">
+  
+              <div class="text-right">              
+                <button title="Editar" class="btn btn-primary" (click)="crear()" title="Crear nuevo"><i class="fa fa-plus"></i></button>              
+              </div>
+  
+                <table class="table">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Cancha</th>
+                      <th>Precio</th>
+                      <th>Activo</th>
+                      <th>Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of data">
+                        <td>{{item.Id}}</td>     
+                        <td>{{item.Cancha}}</td>                           
+                        <td>${{item.Precio}}</td>
+                        <td>{{item.Activo}}</td>
+                        <td>                        
+                          <button title="Editar" class="btn btn-warning" (click)="editar(item.Id)"><i class="fa fa-edit"></i></button>
+                        </td>
+                    </tr>         
+                    </tbody>
+                </table>
+  
+            </div>
+        </div>
+    </div>  
+    </div> 
+  </div>
+  
